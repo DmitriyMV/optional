@@ -228,6 +228,20 @@ func TestOptionalIntMarshalJSON(t *testing.T) {
 	}
 }
 
+func TestOptionalIntPtr(t *testing.T) {
+	val := Of(2)
+
+	firstPtr := val.Ptr()
+	secondPtr := val.Ptr()
+	if firstPtr == secondPtr {
+		t.Errorf("Returned pointers should not be equal")
+	}
+
+	if *firstPtr != *secondPtr {
+		t.Errorf("Returned value should be equal")
+	}
+}
+
 func Example() {
 	val := None[int]()
 	val = Of(2)
