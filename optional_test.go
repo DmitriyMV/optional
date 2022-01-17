@@ -7,6 +7,7 @@ package optional
 
 import (
 	"bytes"
+	"fmt"
 	"testing"
 )
 
@@ -225,4 +226,17 @@ func TestOptionalIntMarshalJSON(t *testing.T) {
 			},
 		)
 	}
+}
+
+func Example() {
+	val := None[int]()
+	val = Of(2)
+	slc, err := val.MarshalJSON()
+	fmt.Println(string(slc), err)
+
+	ptr := val.Ptr()
+	fmt.Println(*ptr)
+	// Output:
+	// 2 <nil>
+	// 2
 }
